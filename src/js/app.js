@@ -70,17 +70,19 @@ const checkAge = age => {
     // Removes result message after 3s
     setTimeout(() => {
       result.innerHTML = "";
-    }, 3000);
+    }, 2000);
   } else {
+    console.log(saveCookie.checked);
     result.innerHTML = `<p class="positive">Welcome!</p>`;
+
     // If Checkbox is checked then cookie is set
-    if ((saveCookie.checked = true)) {
+    if (saveCookie.checked == true) {
       setCookie("ageGatePassed", "true", 1);
     }
     // Removes ageGate after 3s
     setTimeout(() => {
       ageGate.classList.toggle("active");
-    }, 3000);
+    }, 2000);
   }
 };
 
@@ -92,30 +94,28 @@ const setCookie = (cname, cvalue, exdays) => {
 };
 
 const getCookie = cname => {
-  let dc, prefix, begin, end;
-  dc = document.cookie;
-  prefix = cname + "=";
-  begin = dc.indexOf(": " + prefix);
-  end = dc.length;
-  if (begin !== -1) {
-    begin += 2;
-  } else {
-    begin = dc.indexOf(prefix);
-    if (begin === -1 || begin != 0) {
+  let cookie = document.cookie;
+  let prefix = `${cname}=`;
+  let begin = cookie.indexOf("; " + prefix);
+  let end;
+  if (begin == -1) {
+    begin = cookie.indexOf(prefix);
+    if (begin != 0) {
       return null;
     }
+  } else {
+    begin += 2;
+    end = document.cookie.indexOf(";", begin);
+    if (end == -1) {
+      end = cookie.length;
+    }
   }
-
-  if (dc.indexOf(";", begin) !== -1) {
-    end = dc.indexOf(";", begin);
-  }
-
-  return decodeURI(dc.substring(begin + prefix.length, end)).replace(/\"/g, "");
+  return unescape(cookie.substring(begin + prefix.length, end));
 };
 
 const checkCookie = cname => {
   let name = getCookie(cname);
-  if (name != "") {
+  if (name == null) {
     return false;
   } else {
     return true;
@@ -126,11 +126,10 @@ const checkCookie = cname => {
 document.body.onload = () => {
   loadDays(initialDay, finalDay);
   loadYears(initialYear, finalYear);
-  console.log(getCookie("ageGatePassed"));
   // Check if site has previously been visited
   if (checkCookie("ageGatePassed") == true) {
-    ageGate.classList.toggle("active");
   } else {
+    ageGate.classList.toggle("active");
     enterBtn.addEventListener("click", () => {
       // Check that form is completed
       if (
@@ -142,7 +141,7 @@ document.body.onload = () => {
         // Removes result message after 3s
         setTimeout(() => {
           result.innerHTML = "";
-        }, 3000);
+        }, 2000);
       } else {
         checkAge(ageRequirement);
       }
