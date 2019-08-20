@@ -1,4 +1,4 @@
-import "../scss/app/main.scss";
+import "./scss/main.scss";
 
 // Change year and day settings
 const initialYear = 1919;

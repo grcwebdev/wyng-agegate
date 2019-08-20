@@ -8,7 +8,7 @@ const path = require("path");
 module.exports = function(env, argv) {
   return {
     mode: "production",
-    entry: ["./src/js/app.js"],
+    entry: ["./src/app.js"],
     optimization: {
       minimizer: [new OptimizeCSSAssetsPlugin()]
     },
@@ -46,8 +46,7 @@ module.exports = function(env, argv) {
             {
               loader: "file-loader",
               options: {
-                outputPath: "./images",
-                name: "[name].[ext]"
+                name: "./images/[hash].[ext]"
               }
             },
             {

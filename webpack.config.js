@@ -5,7 +5,7 @@ const path = require("path");
 module.exports = function() {
   return {
     mode: "development",
-    entry: ["./src/js/app.js"],
+    entry: ["./src/app.js"],
     watch: true,
     watchOptions: {
       aggregateTimeout: 300, // Process all changes which happened in this time into one rebuild
@@ -52,8 +52,7 @@ module.exports = function() {
             {
               loader: "file-loader",
               options: {
-                outputPath: "./images",
-                name: "[name].[ext]"
+                name: "./images/[hash].[ext]"
               }
             }
           ]
