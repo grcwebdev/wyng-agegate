@@ -38,15 +38,19 @@ body {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      .logo {
-        margin: 0 auto;
+      .img-wrapper {
         margin-bottom: 1.39%;
+        height: auto;
+        width: 100%;
+        max-width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
-          display: inline-block;
           width: 100%;
-          max-width: 150px;
         }
       }
+
       h1.header {
         font-family: "Roboto", sans-serif;
         font-size: 2.5vw;
@@ -174,8 +178,11 @@ body {
   body {
     #ageGate {
       .container {
-        .logo {
+        .img-wrapper {
           margin-bottom: 6.04%;
+          img {
+            max-width: 150px;
+          }
         }
         h1.header {
           font-size: 4vw;
@@ -191,7 +198,7 @@ body {
           #month,
           #day,
           #year {
-            background-size: 2em auto, 100%;
+            background-size: 1.5em auto, 100%;
             font-size: 2vw;
           }
         }
